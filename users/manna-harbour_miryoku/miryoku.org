@@ -129,7 +129,8 @@ Additional implementations and visualisations are provided outside QMK in the
   thumbs, but thumb tap keys are mirrored onto some layers for use with
   auto-repeat.  On other layers thumb keys are redefined with important
   functions for that layer.
-- Auto Shift for numbers and symbols.
+- Auto Shift for alphas, numbers and symbols, including home row alphas with
+  Retro Shift.
 
 
 ** Layers
@@ -821,10 +822,10 @@ Config options.  Automatically included.
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define TAPPING_FORCE_HOLD
 
-// Auto Shift
-#define NO_AUTO_SHIFT_ALPHA
+// Auto Shift and Retro Shift (Auto Shift for Tap Hold).
 #define AUTO_SHIFT_TIMEOUT TAPPING_TERM
 #define AUTO_SHIFT_NO_SETUP
+#define RETRO_SHIFT 500
 
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
