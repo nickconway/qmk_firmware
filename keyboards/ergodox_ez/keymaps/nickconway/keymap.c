@@ -123,6 +123,17 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
         case LALT_T(KC_K):
         case LGUI_T(KC_L):
         case LSFT_T(KC_SCOLON):
+            return false;
+        default:
+            return true;
+    }
+};
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LSFT_T(KC_A):
+        case LSFT_T(KC_O):
+        case LSFT_T(KC_SCOLON):
             return true;
         default:
             return false;
@@ -303,7 +314,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case WHEEL:
             // when keycode is pressed
             if (record->event.pressed) {
-            wheelActive = !wheelActive;
+                wheelActive = !wheelActive;
             // when keycode is released
             } else {
             }
