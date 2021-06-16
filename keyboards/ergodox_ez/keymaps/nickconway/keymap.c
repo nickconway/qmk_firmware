@@ -106,6 +106,17 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 };
 
+bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LSFT_T(KC_A):
+        case LSFT_T(KC_O):
+        case LSFT_T(KC_SCOLON):
+            return true;
+        default:
+            return false;
+    }
+}
+
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LSFT_T(KC_A):
