@@ -287,10 +287,6 @@ void matrix_scan_user(void) {
 
     LEADER_DICTIONARY() {}
 
-    if(wheelActive){
-        tap_code(KC_MS_WH_DOWN);
-    }
-
 };
 
 void leader_start(){
@@ -323,11 +319,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
         case WHEEL:
-            // when keycode is pressed
             if (record->event.pressed) {
+                if(wheelActive){
+                    register_code(KC_MS_WH_DOWN);
+                } else {
+                    unregister_code(KC_MS_WH_DOWN);
+                }
                 wheelActive = !wheelActive;
-            // when keycode is released
-            } else {
             }
             return false;
         }
