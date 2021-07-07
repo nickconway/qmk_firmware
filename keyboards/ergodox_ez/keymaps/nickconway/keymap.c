@@ -317,6 +317,14 @@ void leader_end(){
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
+        case WHEEL:
+            wheelActive = !wheelActive;
+            if(wheelActive){
+                register_code(KC_MS_WH_DOWN);
+            } else {
+                unregister_code(KC_MS_WH_DOWN);
+            }
+            return false;
         case VRSN:
             SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
             return false;
@@ -328,18 +336,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
 
-    switch (keycode) {
-        case WHEEL:
-            if (record->event.pressed) {
-                if(wheelActive){
-                    register_code(KC_MS_WH_DOWN);
-                } else {
-                    unregister_code(KC_MS_WH_DOWN);
-                }
-                wheelActive = !wheelActive;
-            }
-            return false;
-        }
     return true;
 };
 
