@@ -293,7 +293,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 LEADER_EXTERNS();
-static bool wheelActive = false;
 void matrix_scan_user(void) {
 
     LEADER_DICTIONARY() {}
@@ -313,13 +312,14 @@ void leader_end(){
 };
 
 
-
+static bool wheelActive = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
         case WHEEL:
             wheelActive = !wheelActive;
             if(wheelActive){
+                SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
                 register_code(KC_MS_WH_DOWN);
             } else {
                 unregister_code(KC_MS_WH_DOWN);
